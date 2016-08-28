@@ -1,0 +1,11 @@
+%h1 All posts
+%table
+  %tr
+    %th Post title
+    %th User
+    %th User admin?
+  -@posts.each do |post|
+    %tr
+      %td=post.title
+      %td=post.user.name
+      %td=post.user.admin
