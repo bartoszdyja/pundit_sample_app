@@ -1,0 +1,7 @@
+%h1 Add new post
+=form_for @post do |f|
+  =f.label :title
+  =f.text_field :title
+  =f.label :user
+  =f.collection_select :user_id, User.all, :id, :name
+  =f.button :submit
