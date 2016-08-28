@@ -12,8 +12,11 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    authorize @post
     if @post.delete
       redirect_to posts_path, flash: { success: 'Post deleted' }
+    else
+      redirect_to posts_path, flash: { alert: 'Oops' }
     end
   end
 
@@ -25,5 +28,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :user_id)
+  end
+
+  def pundit_user
+    Post.find(params[:id]).user
   end
 end
